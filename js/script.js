@@ -50,15 +50,10 @@ function generateTitleLinks () {
   function clearTitles () {
     console.log(titleList)
     titleList.innerHTML = ''
-    // const links = document.querySelectorAll('.titles a');
-    // for(let link of links){
-    //   link.innerHTML = '';
-    // }
   }
   clearTitles()
 
   let html = ''
-  // let linkHTML = '';
 
   const articles = document.querySelectorAll('.post')
   console.log(articles)
