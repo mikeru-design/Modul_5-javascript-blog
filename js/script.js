@@ -36,12 +36,12 @@ function titleClickHandler (event) {
   console.log(targetArticle)
 
   /* add class 'active' to the correct article */
-  clickedElement.addEventListener('click', targetArticle.classList.add('active'))
+  targetArticle.classList.add('active')
 }
 
 // ---------------------------------Generating TitleList-----------------------------------
 
-function generateTitleLinks (event) {
+function generateTitleLinks () {
   console.log('start generateTitleLinks')
 
   // Getting
