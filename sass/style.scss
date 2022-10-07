@@ -4,6 +4,7 @@
 
 $color-light: #fff;
 $color-dark: #444;
+// $color-light-1: rgb(230, 241, 250);
 
 $font-logo: 'Sacramento', cursive;
 $font-header: 'Oswald', sans-serif;
@@ -16,7 +17,7 @@ $font-text: 'Source Sans Pro', sans-serif;
 }
 
 body {
-  background: $color-light;
+  background: lighten($color-dark, 70%);
   font-family: $font-text;
   color: $color-dark;
   font-weight: 300;
@@ -34,6 +35,7 @@ body {
   text-transform: uppercase;
   font-family: $font-header;
   font-weight: 600;
+
   span {
     text-transform: none;
     font-weight: 400;
@@ -45,23 +47,19 @@ body {
 
 .wrapper {
   display: flex;
-  margin-left: 10px;
+  // margin-left: 10px;
 }
 
 .sidebar {
   flex: 1 0 0;
 }
 
-.posts {
-  flex: 2 0 0;
-}
-
 .sidebar, .posts {
   background: $color-light;
-  margin-right: 10px;
-  padding: 40px;
-  border: 1px solid $color-dark;
-  border-radius: 5px;
+  margin-right: 30px;
+  padding: 30px 50px;
+  border-radius: 15px;
+  box-shadow: 5px 5px 5px rgba(186, 186, 186, 0.196);
 }
 
 /* Logo */
@@ -80,8 +78,39 @@ body {
   list-style-type: none;
   margin: 0;
   padding: 0;
+
+  a{
+    position: relative;
+    color: $color-dark;
+    text-decoration: none;
+    transition: .2s;
+
+    &:hover{
+      font-weight: bold;
+    }
+
+    &::before{
+      content: '';
+      position: absolute;
+      height: 1px;
+      width: 100%;
+      bottom: -2%;
+      left: 0;
+      background-color: $color-dark;
+      transform: scale(0);
+      transition: transform .3s;
+      transform-origin: left;
+    }
+
+    &:hover::before{
+      transform: scale(1);
+    }
+
+  }
+
   .active {
     font-weight: bold;
+    letter-spacing: 2px;
   }
 }
 
@@ -97,14 +126,30 @@ body {
   li {
     margin-bottom: 12px;
   }
+
 }
 
 /* Post */
+.posts{
+  flex: 3 0 0;
+  position: relative;
+  height: 600px;
+}
 
 .post {
-  display: none;
+  position: absolute;
+  opacity: 0;
+  width: 75%;
+  height: 85%;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar{
+    display: none;
+  }
+
   &.active {
-    display: block;
+    opacity: 1;
+    transition: opacity 1s;
   }
 }
 
@@ -114,6 +159,7 @@ body {
 
 .post-tags {
   display: flex;
+  
   p {
     margin: 0 10px 0 0;
   }
