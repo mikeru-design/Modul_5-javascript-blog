@@ -6,6 +6,9 @@ $color-light: #fff;
 $color-dark: #444;
 // $color-light-1: rgb(230, 241, 250);
 
+$padding-x: 50px;
+$padding-y: 50px;
+
 $font-logo: 'Sacramento', cursive;
 $font-header: 'Oswald', sans-serif;
 $font-text: 'Source Sans Pro', sans-serif;
@@ -23,6 +26,7 @@ body {
   font-weight: 300;
   font-size: 16px;
   line-height: 1.7;
+  box-sizing: border-box;
 }
 
 .container {
@@ -57,7 +61,7 @@ body {
 .sidebar, .posts {
   background: $color-light;
   margin-right: 30px;
-  padding: 30px 50px;
+  padding: $padding-y $padding-x;
   border-radius: 15px;
   box-shadow: 5px 5px 5px rgba(186, 186, 186, 0.196);
 }
@@ -87,31 +91,31 @@ body {
 
     &:hover{
       font-weight: bold;
+      z-index: 10;
     }
-
-    &::before{
-      content: '';
-      position: absolute;
-      height: 1px;
-      width: 100%;
-      bottom: -2%;
-      left: 0;
-      background-color: $color-dark;
-      transform: scale(0);
-      transition: transform .3s;
-      transform-origin: left;
-    }
-
-    &:hover::before{
-      transform: scale(1);
-    }
-
   }
 
   .active {
     font-weight: bold;
     letter-spacing: 2px;
   }
+}
+
+.titles a::before{
+  content: '';
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  bottom: -2%;
+  left: 0;
+  background-color: $color-dark;
+  transform: scale(0);
+  transition: transform .3s;
+  transform-origin: left;
+}
+
+.titles a:hover::before{
+  transform: scale(1);
 }
 
 .list-horizontal {
@@ -130,17 +134,23 @@ body {
 }
 
 /* Post */
+
 .posts{
   flex: 3 0 0;
   position: relative;
-  height: 600px;
+  min-height: 500px;
+  height: auto;
+  max-height: 600px;
 }
+
 
 .post {
   position: absolute;
   opacity: 0;
-  width: 75%;
-  height: 85%;
+  left: $padding-x;
+  right: $padding-x;
+  top: $padding-y;
+  bottom: $padding-y;
   overflow-y: scroll;
 
   &::-webkit-scrollbar{
@@ -150,7 +160,13 @@ body {
   &.active {
     opacity: 1;
     transition: opacity 1s;
+    z-index: 1;
   }
+}
+
+.post-title{
+  padding-top: 0;
+  margin-top: 0;
 }
 
 .post-author {
@@ -159,8 +175,54 @@ body {
 
 .post-tags {
   display: flex;
-  
+
   p {
     margin: 0 10px 0 0;
+  }
+}
+@media (0 <= width <= 900px) {
+  .wrapper{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .sidebar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-right: 0;
+
+    ul{
+      display: flex;
+      flex-wrap: wrap;
+
+      li{
+        position: relative;
+        margin-right: 10px;
+        margin-left: 10px;
+
+        &::before{
+          content: '';
+          position: absolute;
+          width: 2px;
+          height: 60%;
+          right: -10px;
+          bottom: 0;
+          transform: translateY(-40%);
+          background-color: lighten($color: $color-dark, $amount: 60);
+        }
+      }
+    }
+  }
+
+  .posts{
+    width: 100%;
+    margin-bottom: 20px;
+    margin-right: 0;
   }
 }
