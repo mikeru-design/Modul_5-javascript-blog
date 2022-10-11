@@ -144,7 +144,7 @@ body {
 }
 
 
-.post {
+.post, {
   position: absolute;
   opacity: 0;
   left: $padding-x;
@@ -171,6 +171,19 @@ body {
 
 .post-author {
   font-style: italic;
+
+  a{
+    display: inline-block;
+    text-decoration: none;
+    color: $color-dark;
+    transition: .5s;
+  }
+
+  .active {
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-left: 10px;
+  }
 }
 
 .post-tags {
