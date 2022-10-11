@@ -119,7 +119,6 @@ function generateTags(){
   /* END LOOP: for every article: */
   }
 }
-
 generateTags();
 
 function tagClickHandler(event){
@@ -147,7 +146,7 @@ function tagClickHandler(event){
   }
 
   /* find all tag links with "href" attribute equal to the "href" constant */
-  const tagLinksHref = document.getElementById(href);
+  const tagLinksHref = document.querySelectorAll('a[href="' + href + '"]');
 
   /* START LOOP: for each found tag link */
   for ( const tagLinkHref of tagLinksHref) {
@@ -159,20 +158,21 @@ function tagClickHandler(event){
   }
 
   /* execute function "generateTitleLinks" with article selector as argument */
-
   generateTitleLinks('[data-tags~="' + tag + '"]');
 }
 
-// tagClickHandler();
-
 function addClickListenersToTags(){
   /* find all links to tags */
+  const tags = document.querySelectorAll('list-horizontal li a');
 
   /* START LOOP: for each link */
+  for (const tag of tags) {
 
-  /* add tagClickHandler as event listener for that link */
+    /* add tagClickHandler as event listener for that link */
+    tag.addEventListener('click', tagClickHandler);
 
-  /* END LOOP: for each link */
+    /* END LOOP: for each link */
+  }
 }
 
 addClickListenersToTags();
