@@ -6,7 +6,7 @@ const
   optTitleSelector = '.post-title',
   optArticleTagsSelector = '.post-tags .list',
   optArticleAuthorSelector = '.post-author',
-  optTagsListSelector = '.tags .list';
+  optTagsListSelector = '.list.tags';
 
 // ---------------------------------titleClickHandler-----------------------------------
 
@@ -268,6 +268,7 @@ addClickListenersToAuthor();
 // ---------------------------------generateTags-----------------------------------
 
 function generateTags(){
+
   /* [NEW] create a new variable allTags with an empty array */
   let allTags = [];
 
@@ -290,14 +291,14 @@ function generateTags(){
     console.log(articleTags);
 
     /* split tags into array */
-    let allTags = articleTags.split(' ');
-    console.log(allTags);
+    const articleTagsArray = articleTags.split(' ');
+    console.log(articleTagsArray);
 
     /* START LOOP: for each tag */
-    for (const tag of allTags) {
+    for (const tag of articleTagsArray) {
 
       /* generate HTML of the link */
-      const tagHTML = '<li><a href="#tag-'+ tag +'"><p>'+ tag +'</p></a></li>';
+      const tagHTML = '<li><a href="#tag-'+ tag +'"><span>'+ tag +'</span></a></li>';
       console.log(tagHTML);
 
       /* add generated code to html variable */
@@ -305,23 +306,25 @@ function generateTags(){
       console.log(html);
 
       /* [NEW] check if this link is NOT already in allTags */
-      // if(allTags.indexOf(linkHTML) == -1){
+      if(allTags.indexOf(tagHTML) == -1){
         /* [NEW] add generated code to allTags array */
-        // allTags.push(linkHTML);
+        allTags.push(tagHTML);
 
         /* END LOOP: for each tag */
-      // }
+      }
+    }
 
       /* insert HTML of all the links into the tags wrapper */
       tagList.insertAdjacentHTML('beforeend', html);
 
       /* END LOOP: for every article: */
-    }
-
-  /* [NEW] find list of tags in right column */
-  const tagListRight = document.querySelector(optTagsListSelector);
-
-  /* [NEW] add html from allTags to tagList */
-  tagListRight.innerHTML = allTags.join(' ');
   }
+
+   /* [NEW] find list of tags in right column */
+   const tagListRight = document.querySelector(optTagsListSelector);
+
+   /* [NEW] add html from allTags to tagList */
+   tagListRight.innerHTML = allTags.join(' ');
 }
+
+// generateTags();
