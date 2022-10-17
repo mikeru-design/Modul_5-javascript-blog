@@ -65,6 +65,28 @@ body {
   box-shadow: 5px 5px 5px rgba(186, 186, 186, 0.196);
 }
 
+.tag-size-1 span{
+  font-size: 100%;
+  color: lighten($color-dark, 40%);
+}
+.tag-size-2 span{
+  font-size: 120%;
+  color: lighten($color-dark, 30%);
+}
+.tag-size-3 span{
+  font-size: 140%;
+  color: lighten($color-dark, 20%);
+}
+.tag-size-4 span{
+  font-size: 180%;
+  color: lighten($color-dark, 10%);
+}
+.tag-size-5 span{
+  font-size: 180%;
+  // font-weight: 600;
+  color: darken($color-dark, 10%);
+}
+
 /* ----------------------------------------Logo */
 
 .logo {
@@ -126,6 +148,14 @@ body {
   }
 }
 
+.list.tags li{
+  &::before{
+    display: none;
+  a{
+    }
+  }
+}
+
 /* -----------------------------------Authors */
 
 .authors {
@@ -145,7 +175,6 @@ body {
   height: auto;
   // max-height: 600px;
 }
-
 
 .post{
   position: absolute;
@@ -219,6 +248,7 @@ body {
     ul{
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
 
       li{
         position: relative;

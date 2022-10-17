@@ -6,7 +6,9 @@ const
   optTitleSelector = '.post-title',
   optArticleTagsSelector = '.post-tags .list',
   optArticleAuthorSelector = '.post-author',
-  optTagsListSelector = '.list.tags';
+  optTagsListSelector = '.list.tags',
+  optCloudClassCount = '5',
+  optCloudClassPrefix = 'tag-size-';
 
 // ---------------------------------titleClickHandler-----------------------------------
 
@@ -79,7 +81,7 @@ function generateTitleLinks(customSelector = ''){
 }
 generateTitleLinks();
 
-// ---------------------------------generateTags-----------------------------------
+// ---------------------------------calculateTagsParams-----------------------------------
 
 function calculateTagsParams(tags){
   const params = {max:0, min:999999};
@@ -93,6 +95,19 @@ function calculateTagsParams(tags){
 
   return params;
 }
+
+// ---------------------------------calculateTagClass-----------------------------------
+
+function calculateTagClass(count, params){
+  const normalizedCount = count - params.min;
+  const normalizedMax = params.max - params.min;
+  const percentage = normalizedCount/ normalizedMax;
+  const classNumber = Math.floor(percentage * (optCloudClassCount -1) + 1);
+
+  return (optCloudClassPrefix + classNumber);
+}
+
+// ---------------------------------generateTags-----------------------------------
 
 function generateTags(){
 
@@ -162,13 +177,14 @@ function generateTags(){
   for (let tag in allTags) {
 
     // [NEW] generate code of a link and add it to allTagsHTML
-    const tagLink = '<li><a href="#tag-' + tag + '"><span>' + tag + ' (' + allTags[tag] + ')</span></a></li>';
+    const tagLinkHTML = '<li><a href="#tag-' + tag + '" class="' + calculateTagClass(allTags[tag], tagsParams) + '"><span>' + tag + '</span></a></li>';
+    console.log('tagLinkHTML:', tagLinkHTML);
 
-    allTagsHTML += tagLink;
+    allTagsHTML += tagLinkHTML;
     // [NEW] END LOOP: for each tag in allTags:
   }
   // [NEW] add html from allTagsHTML to tagList
-tagListRight.insertAdjacentHTML('beforeend', allTagsHTML);
+  tagListRight.insertAdjacentHTML('beforeend', allTagsHTML);
 }
 generateTags();
 
