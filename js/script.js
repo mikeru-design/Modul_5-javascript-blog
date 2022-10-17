@@ -80,8 +80,18 @@ function generateTitleLinks(customSelector = ''){
 generateTitleLinks();
 
 // ---------------------------------generateTags-----------------------------------
-function calculateTagsParams(tags){
 
+function calculateTagsParams(tags){
+  const params = {max:0, min:999999};
+
+  for (let tag in tags) {
+    console.log(tag + 'is used' + tags[tag] + 'times');
+
+    params.max = Math.max(tags[tag], params.max);
+    params.min = Math.min(tags[tag], params.min);
+  }
+
+  return params;
 }
 
 function generateTags(){
@@ -145,19 +155,19 @@ function generateTags(){
   const tagsParams = calculateTagsParams(allTags);
   console.log('tagsParams:', tagsParams);
 
-// [NEW] create variable for all links HTML code
-let allTagsHTML = '';
+  // [NEW] create variable for all links HTML code
+  let allTagsHTML = '';
 
-// [NEW] START LOOP: for each tag in allTags:
-for (let tag in allTags) {
+  // [NEW] START LOOP: for each tag in allTags:
+  for (let tag in allTags) {
 
-  // [NEW] generate code of a link and add it to allTagsHTML
-  const tagLink = '<li><a href="#tag-' + tag + '">' + tag + ' (' + allTags[tag] + ')</a></li>';
+    // [NEW] generate code of a link and add it to allTagsHTML
+    const tagLink = '<li><a href="#tag-' + tag + '"><span>' + tag + ' (' + allTags[tag] + ')</span></a></li>';
 
-  allTagsHTML += tagLink;
-  // [NEW] END LOOP: for each tag in allTags:
-}
-// [NEW] add html from allTagsHTML to tagList
+    allTagsHTML += tagLink;
+    // [NEW] END LOOP: for each tag in allTags:
+  }
+  // [NEW] add html from allTagsHTML to tagList
 tagListRight.insertAdjacentHTML('beforeend', allTagsHTML);
 }
 generateTags();
@@ -206,7 +216,7 @@ function tagClickHandler(event){
 
 function addClickListenersToTags(){
   /* find all links to tags */
-  const tags = document.querySelectorAll('.post-tags li a');
+  const tags = document.querySelectorAll('.post-tags li a, .list.tags a');
 
   /* START LOOP: for each link */
   for (const tag of tags) {
