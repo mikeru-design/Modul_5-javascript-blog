@@ -356,7 +356,7 @@ function authorClickHandler(event){
 
 function addClickListenersToAuthor(){
   /* find all links to tags */
-  const authors = document.querySelectorAll(optArticleAuthorSelector + ' a');
+  const authors = document.querySelectorAll('.post-author a, .list.authors a');
 
   /* START LOOP: for each link */
   for (const author of authors) {
@@ -367,15 +367,6 @@ function addClickListenersToAuthor(){
     /* END LOOP: for each link */
   }
 
-  const authorsRight = document.querySelectorAll(optAuthorsListSelector + ' a');
-
-  for (const author of authorsRight) {
-
-    /* add tagClickHandler as event listener for that link */
-    author.addEventListener('click', authorClickHandler);
-
-    /* END LOOP: for each link */
-  }
 }
 addClickListenersToAuthor();
 
