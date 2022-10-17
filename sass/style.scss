@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald:400,600|Sacramento|Source+Sans+Pro:300&subset=latin-ext');
 
-/* Variables */
+/* ------------------------------------------Variables */
 
 $color-light: #fff;
 $color-dark: #444;
@@ -13,7 +13,7 @@ $font-logo: 'Sacramento', cursive;
 $font-header: 'Oswald', sans-serif;
 $font-text: 'Source Sans Pro', sans-serif;
 
-/* Global */
+/* ------------------------------------------Global */
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -47,11 +47,10 @@ body {
   }
 }
 
-/* Layout */
+/* -----------------------------------------Layout */
 
 .wrapper {
   display: flex;
-  // margin-left: 10px;
 }
 
 .sidebar {
@@ -66,7 +65,7 @@ body {
   box-shadow: 5px 5px 5px rgba(186, 186, 186, 0.196);
 }
 
-/* Logo */
+/* ----------------------------------------Logo */
 
 .logo {
   font-family: $font-logo;
@@ -76,7 +75,7 @@ body {
   text-align: center;
 }
 
-/* Lists */
+/* ------------------------------------------Lists */
 
 .list {
   list-style-type: none;
@@ -119,32 +118,36 @@ body {
 }
 
 .list-horizontal {
+  display: flex;
+  align-items: center;
+
   li {
-    display: inline-block;
+    margin-left: 10px;
   }
 }
 
-/* Authors */
+/* -----------------------------------Authors */
 
 .authors {
+
   li {
     margin-bottom: 12px;
   }
 
 }
 
-/* Post */
+/* -----------------------------------Post */
 
 .posts{
   flex: 3 0 0;
   position: relative;
   min-height: 500px;
   height: auto;
-  max-height: 600px;
+  // max-height: 600px;
 }
 
 
-.post, {
+.post{
   position: absolute;
   opacity: 0;
   left: $padding-x;
@@ -189,11 +192,14 @@ body {
 .post-tags {
   display: flex;
 
-  p {
+  span {
     margin: 0 10px 0 0;
   }
 }
-@media (0 <= width <= 900px) {
+
+// --------------------------------------MEDIA
+
+@media (0 < width < 900px) {
   .wrapper{
     flex-direction: column;
     justify-content: center;
