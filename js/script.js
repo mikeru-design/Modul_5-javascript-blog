@@ -1,5 +1,11 @@
 'use strict';
 
+const templates = {
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+  tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
+  authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
+};
+
 const
   optArticleSelector = '.post',
   optTitleListSelector = '.titles',
@@ -39,7 +45,7 @@ function titleClickHandler(event){
   const articleSelector = clickedElement.getAttribute('href');
 
   /* find the correct article using the selector (value of 'href' attribute) */
-  const targetArticle = document.getElementById(articleSelector);
+  const targetArticle = document.querySelector(articleSelector);
 
   /* add class 'active' to the correct article */
   targetArticle.classList.add('active');
@@ -76,7 +82,9 @@ function generateTitleLinks(customSelector = ''){
 
     const articleTitle = article.querySelector(optTitleSelector).innerHTML;
 
-    const linkHTML = '<li><a href="' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+    const linkHTMLData = {id: articleId, title: articleTitle};
+    const linkHTML = templates.articleLink(linkHTMLData);
+
 
     html = html + linkHTML;
   }
@@ -147,10 +155,12 @@ function generateTags(){
     for (const tag of articleTagsArray) {
 
       /* generate HTML of the link */
-      const tagHTML = '<li><a href="#tag-'+ tag +'"><span>'+ tag +'</span></a></li>';
+      // const tagHTML = '<li><a href="#tag-'+ tag +'"><span>'+ tag +'</span></a></li>';
+      const linkHTMLData = {id: 'tag-'+ tag, title: tag};
+      const linkHTML = templates.articleLink(linkHTMLData);
 
       /* add generated code to html variable */
-      html = html + tagHTML;
+      html = html + linkHTML;
 
       /* [NEW] check if this link is NOT already in allTags */
       if(!allTags.hasOwnProperty(tag)){
@@ -277,10 +287,12 @@ function generateAuthor(){
     /* get author from data-author attribute */
     const author = article.getAttribute('data-author');
 
-    const html = '<a href="#author-' + author + '"><span>' + author + '</span></a>';
+    // const html = '<a href="#author-' + author + '"><span>' + author + '</span></a>';
+    const linkHTMLData = {id: 'author-' + author, title: author};
+    const linkHTML = templates.authorLink(linkHTMLData);
 
     /* insert HTML of all the links into the tags wrapper */
-    authorWrapper.insertAdjacentHTML('beforeend', html);
+    authorWrapper.insertAdjacentHTML('beforeend', linkHTML);
 
     if(!allAuthors.hasOwnProperty(author)){
       /* [NEW] add generated code to allTags array */

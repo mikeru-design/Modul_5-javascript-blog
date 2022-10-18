@@ -1,51 +1,53 @@
 module.exports = {
-  "env": {
-      "browser": true,
-      "es2021": true
+  'env': {
+    'browser': true,
+    'es2021': true
   },
 
-  "extends": [
-      "eslint:recommended",
+  'extends': [
+    'eslint:recommended',
   ],
 
-  "overrides": [
+  'overrides': [
   ],
 
-  "parserOptions": {
-      "ecmaVersion": "latest",
-      "sourceType": "module"
+  'parserOptions': {
+    'ecmaVersion': 'latest',
+    'sourceType': 'module'
   },
 
-  "plugins": [
+  'plugins': [
   ],
 
-  "rules": {
-
-    "indent": [
-      "error",
+  'rules': {
+    "globals": {
+      "Handlebars": false
+    },
+    'indent': [
+      'error',
       2
     ],
 
-    "linebreak-style": [
-        "off"
+    'linebreak-style': [
+      'off'
     ],
 
-    "quotes": [
-        "error",
-        "single",
-        {"allowTemplateLiterals": true}
+    'quotes': [
+      'error',
+      'single',
+      {'allowTemplateLiterals': true}
     ],
 
-    "semi": [
-        "error",
-        "always"
+    'semi': [
+      'error',
+      'always'
     ],
 
-    "no-console": [
-        "off"
+    'no-console': [
+      'off'
     ],
 
-    "no-prototype-builtins": ["off"]
+    'no-prototype-builtins': ['off']
   }
 
 }
