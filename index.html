@@ -16,7 +16,9 @@
             <h1 class="logo">my blog</h1>
             <main class="wrapper">
                 <aside class="sidebar">
-                    <h2 class="section-title">All posts</h2>
+                    <a href="#" class="section-title resetBtn">
+                      <h2>All posts</h2>
+                    </a>
                     <ul class="list titles">
                     </ul>
                 </aside>
@@ -154,7 +156,7 @@
                         </div>
                     </article>
 
-                    <article class="post" id="article-7" data-tags="zdrowie trening_siłowy" data-author="Kitty Toebean">
+                    <article class="post" id="article-7" data-tags="zdrowie trening_siłowy kuchnia_polska" data-author="Kitty Toebean">
                         <h3 class="post-title">Article 7</h3>
                         <p class="post-author">by </p>
                         <div class="post-content">
@@ -272,6 +274,16 @@
     </script>
     <script id="template-author-link" type="text/x-handlebars-template">
       <a href="#{{ id }}"><span>{{ title }}</span></a>
+    </script>
+    <script id="template-tag-cloud-link" type="text/x-handlebars-template">
+      {{#each tags}}
+      <li><a href="#tag-{{ tag }}" class="{{ className }}"><span>{{ tag }}</span></a></li>
+      {{/each}}
+    </script>
+    <script id="template-author-right-link" type="text/x-handlebars-template">
+      {{#each authors}}
+      <li><a href="#author-{{ author }}"><span>{{ author }} ({{ count }})</span></a></li>
+      {{/each}}
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
     <script src="/js/script.js"></script>

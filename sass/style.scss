@@ -35,10 +35,15 @@ body {
 }
 
 .section-title {
-  font-size: 22px;
-  text-transform: uppercase;
-  font-family: $font-header;
-  font-weight: 600;
+  text-decoration: none;
+
+  h2{
+    font-size: 22px;
+    text-transform: uppercase;
+    font-family: $font-header;
+    font-weight: 600;
+    color: $color-dark;
+  }
 }
 
 /* -----------------------------------------Layout */
