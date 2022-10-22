@@ -339,7 +339,7 @@ function generateAuthor(){
       count: allAuthors[author],
     });
 
-  authorsListRight.innerHTML = templates.authorsListRight(allAuthorsData);
+    authorsListRight.innerHTML = templates.authorsListRight(allAuthorsData);
   }
 
 }

@@ -19,10 +19,11 @@ module.exports = {
   'plugins': [
   ],
 
+  "globals": {
+    "Handlebars": false
+  },
+
   'rules': {
-    "globals": {
-      "Handlebars": false
-    },
     'indent': [
       'error',
       2
